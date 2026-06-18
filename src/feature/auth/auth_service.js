@@ -22,14 +22,17 @@ export default class AuthService {
         if (!password) {
             throw new BadRequestError('Password is required')
         }
+
+        const lowerName = name?.trim().toLowerCase()
+        const lowerEmail = email?.trim().toLowerCase()
         
-        const existing = await this.authRepo.findByEmail(email)
+        const existing = await this.authRepo.findByEmail(lowerEmail)
         if (existing){
             throw new BadRequestError('Email already in use')
         } 
         
         const hashed = await hashPassword(password)
-        const user = await this.authRepo.create({ name, email, password: hashed, role })
+        const user = await this.authRepo.create({ name: lowerName, email: lowerEmail, password: hashed, role })
 
         return this.getUser(user.id)
     }
@@ -45,7 +48,9 @@ export default class AuthService {
             throw new BadRequestError('Password is required')
         }
 
-        const user = await this.authRepo.findByEmail(email)
+        const lowerEmail = email?.trim().toLowerCase()
+
+        const user = await this.authRepo.findByEmail(lowerEmail)
         
         if (!user) {
             throw new BadRequestError('Invalid email or password')
