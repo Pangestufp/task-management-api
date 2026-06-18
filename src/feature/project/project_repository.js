@@ -1,4 +1,6 @@
-import { Project, User } from '../../models/index.js'
+import Project from "../../models/project.js"
+import User from "../../models/user.js"
+
 
 export default class ProjectRepository {
     
