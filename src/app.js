@@ -7,6 +7,7 @@ import Task from './models/task.js'
 import AuditLog from './models/audit_log.js'
 import sequelize from './config/database.js'
 import routes from './routes/index.js'
+import './models/index.js'
 import { errorHandler } from './exception/error_handler.js'
 
 dotenv.config()

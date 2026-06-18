@@ -34,6 +34,8 @@ const Task = sequelize.define('Task', {
 },{
     tableName: 'tasks',
     timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
 })
 
 export default Task
