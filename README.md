@@ -64,7 +64,7 @@ Pattern yang digunakan: **Controller → Service → Repository → Model**, dip
 
 ```bash
 # 1. Clone repository
-git clone <repository-url>
+git clone https://github.com/Pangestufp/task-management-api.git
 cd task-managemenr-api
 
 # 2. Install dependencies
