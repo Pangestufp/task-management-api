@@ -1,0 +1,53 @@
+import { NotFoundError } from '../../exception/app_error.js'
+import Task from '../../models/task.js'
+import Project from "../../models/project.js"
+
+export default class AiRepository {
+
+  async executeOperations(operations, transaction) {
+    const results = []
+
+    for (const op of operations) {
+
+        if (op.operation === 'CREATE') {
+            const project = await Project.findByPk(op.data.project_id, { transaction })
+            if (!project) {
+                throw new NotFoundError(`Project ID ${op.data.project_id} not found`)
+            }
+
+            const task = await Task.create(op.data, { transaction })
+            results.push({ operation: 'CREATE', task: task.toJSON() })
+        }
+
+        if (op.operation === 'UPDATE') {
+            const task = await Task.findByPk(op.where.id, { transaction })
+
+            if (!task) {
+                throw new NotFoundError(`Task ID ${op.where.id} not found`)
+            }
+
+            // buang field null biar gak nge-reset kolom yang gak diubah
+            const cleanData = Object.fromEntries(
+                Object.entries(op.data).filter(([_, value]) => value !== null)
+            )
+
+            await task.update(cleanData, { transaction })
+            results.push({ operation: 'UPDATE', task: task.toJSON() })
+        }
+
+        if (op.operation === 'DELETE') {
+            const task = await Task.findByPk(op.where.id, { transaction })
+
+            if (!task) {
+                throw new NotFoundError(`Task ID ${op.where.id} not found`)
+            }
+
+            await task.destroy({ transaction })
+            results.push({ operation: 'DELETE', id: op.where.id })
+        }
+
+    }
+
+    return results
+  }
+}

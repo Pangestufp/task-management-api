@@ -29,7 +29,7 @@ const Task = sequelize.define('Task', {
     },
     assignee_id: {
         type: DataTypes.INTEGER,
-        allowNull: true,
+        allowNull: false,
     },
 },{
     tableName: 'tasks',
