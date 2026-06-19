@@ -48,7 +48,7 @@ src/
 └── seed.js                  # database seeder
 ```
 
-Pattern yang digunakan: **Controller → Service → Repository → Model**, dipisah per-feature (modular by feature, bukan by layer).
+Pattern yang digunakan: **Controller → Service → Repository → Model**, dipisah per feature (modular by feature, bukan by layer).
 
 ---
 
@@ -73,7 +73,7 @@ npm install
 # 3. Buat database PostgreSQL secara manual
 psql -U postgres
 CREATE DATABASE task_management;
-\q
+
 ```
 
 > **Catatan:** Sequelize tidak membuat database secara otomatis, hanya membuat/menyesuaikan **table** lewat `sequelize.sync()`. Database itu sendiri harus dibuat manual terlebih dahulu.
@@ -124,8 +124,6 @@ GEMINI_API_KEY=
 | `PEPPER` | String rahasia tambahan yang digabung ke password sebelum di-hash (selain salt bawaan bcrypt) |
 | `GEMINI_URL` | Endpoint Gemini API untuk `generateContent` |
 | `GEMINI_API_KEY` | API Key dari Google AI Studio |
-
-> ⚠️ File `.env` **tidak ikut di-commit** (sudah ada di `.gitignore`). Jangan pernah menaruh `JWT_SECRET`, `PEPPER`, `DB_PASSWORD`, atau `GEMINI_API_KEY` yang sebenarnya di `.env.example` atau di tempat lain yang ter-commit ke repository.
 
 ---
 
@@ -178,48 +176,40 @@ Parsing aman (ai_parse.js)
      ▼
 [Lapis 3] Validasi backend (ai_validator.js)
      — cek ulang business rule yang tidak bisa
-     — dipaksa lewat schema (mis. assignee_id wajib
-     — di CREATE, project_id terlarang di UPDATE)
+     — dipaksa lewat schema (misalnya assignee_id wajib di CREATE, project_id terlarang di UPDATE)
      │
      ▼
 Eksekusi dalam Database Transaction (ai_repository.js)
      — semua operasi commit/rollback bersama
 ```
 
-### Mengapa 3 lapis, bukan cukup 1?
-
-| Lapis | Bisa mencegah | Tidak bisa mencegah |
-|---|---|---|
-| System Prompt | AI menyentuh tabel `users`, format output tidak konsisten | AI tetap bisa berhalusinasi / mengabaikan instruksi |
-| `responseSchema` | Struktur & tipe data field yang salah, field asing | Business rule kondisional (mis. field wajib beda antara CREATE vs UPDATE) — Gemini schema tidak mendukung *conditional required* |
-| Validator backend | Semua kelonggaran di atas, jadi *safety net* terakhir | — (ini garis pertahanan final sebelum data masuk DB) |
-
 ### Aturan kunci dalam System Prompt
 
-1. **Never guess data** — AI dilarang keras menebak `project_id`, `assignee_id`, `task id`, `title`, atau `description`. Jika informasi wajib tidak disebutkan eksplisit oleh user, AI harus merespons `REJECTED` dengan alasan jelas di field `reason`.
-2. **Strict enum mapping** — `status` dan `priority` punya mapping kata kunci Bahasa Indonesia/Inggris (`"selesai"` → `done`, `"urgent"` → `high`, dst), AI dilarang menciptakan nilai enum baru di luar yang diizinkan.
-3. **Title & description extraction by keyword** — judul/deskripsi diambil persis dari teks setelah kata kunci pemicu (`judul`, `deskripsi`), bukan disimpulkan bebas dari kalimat — ini mencegah AI menghasilkan title yang berantakan/berulang.
-4. **Struktur output selalu lengkap (5 keys: `operation`, `table`, `data`, `where`, `reason`)** — field yang tidak relevan untuk suatu operasi diisi `null`, bukan dihilangkan. Ini krusial agar Gemini tidak memecah satu instruksi menjadi beberapa object JSON terpisah (masalah yang sempat terjadi saat schema masih longgar).
-5. **One instruction = one operation object** — mencegah duplikasi operasi untuk task id yang sama dalam satu request.
-6. **Larangan tabel `users` & `projects`** — permintaan untuk mengubah/menghapus user, atau di luar konteks task management (mis. "buatkan kode python"), wajib direspons `REJECTED`.
-
-### Penanganan nilai `null` (field yang tidak diubah)
-
-Karena schema memaksa `data` selalu berisi 6 key (`project_id`, `title`, `description`, `status`, `priority`, `assignee_id`), pada operasi `UPDATE`, field yang tidak disebutkan user akan bernilai `null` — ini secara eksplisit berarti **"jangan diubah"**, bukan **"set jadi kosong"**. Sebelum dieksekusi ke `task.update()`, backend membersihkan (`filter`) seluruh key bernilai `null` agar kolom yang tidak relevan tidak ikut tertimpa.
+1. **Never guess data** AI dilarang keras menebak `project_id`, `assignee_id`, `task id`, `title`, atau `description`. Jika informasi wajib tidak disebutkan eksplisit oleh user, AI harus merespons `REJECTED` dengan alasan jelas di field `reason`.
+2. **Strict enum mapping** `status` dan `priority` punya mapping kata kunci Bahasa Indonesia/Inggris (`"selesai"` → `done`, `"urgent"` → `high`, dst), AI dilarang menciptakan nilai enum baru di luar yang diizinkan.
+3. **Title & description extraction by keyword** judul/deskripsi diambil persis dari teks setelah kata kunci pemicu (`judul`, `deskripsi`), bukan disimpulkan bebas dari kalimat ini mencegah AI menghasilkan title yang berantakan/berulang.
+4. **Struktur output selalu lengkap (5 keys: `operation`, `table`, `data`, `where`, `reason`)** field yang tidak relevan untuk suatu operasi diisi `null`, bukan dihilangkan. Ini krusial agar Gemini tidak memecah satu instruksi menjadi beberapa object JSON terpisah (masalah yang sempat terjadi saat schema masih longgar).
+5. **One instruction = one operation object** mencegah duplikasi operasi untuk task id yang sama dalam satu request.
+6. **Larangan tabel `users` & `projects`** permintaan untuk mengubah/menghapus user, atau di luar konteks task management (mis. "buatkan kode python"), wajib direspons `REJECTED`.
 
 ### Database Transaction & Rollback
 
-Seluruh operasi hasil parsing AI dalam satu request dieksekusi dalam satu `sequelize.transaction()`. Jika prompt berisi instruksi ganda (mis. *"buat task baru ... terus update task ID 5 ..."*) dan salah satu operasi gagal (misal `project_id` atau task id yang dirujuk tidak ditemukan), seluruh operasi dalam transaksi tersebut **otomatis di-rollback** — tidak ada perubahan parsial yang tersimpan.
+Seluruh operasi hasil parsing AI dalam satu request dieksekusi dalam satu `sequelize.transaction()`. Jika prompt berisi instruksi ganda (mis. *"buat task baru ... terus update task ID 5 ..."*) dan salah satu operasi gagal (misal `project_id` atau task id yang dirujuk tidak ditemukan), seluruh operasi dalam transaksi tersebut **otomatis di-rollback**.
 
 ### Audit Log
 
-Setiap pemanggilan `POST /ai/command` — baik berhasil maupun gagal — selalu menyimpan satu record ke tabel `audit_log`, berisi prompt asli, response mentah dari AI, status (`success`/`failed`), dan alasan kegagalan jika ada. Penyimpanan audit log dijalankan di blok `finally` agar tetap tercatat apa pun hasil eksekusinya, dan kegagalan menyimpan audit log sendiri tidak mengganggu response utama ke user.
+Setiap pemanggilan `POST /ai/command` baik berhasil maupun gagal selalu menyimpan satu record ke tabel `audit_log`, berisi prompt asli, response mentah dari AI, status (`success`/`failed`), dan alasan kegagalan jika ada. Penyimpanan audit log dijalankan di blok `finally` agar tetap tercatat apa pun hasil eksekusinya, dan kegagalan menyimpan audit log sendiri tidak mengganggu response utama ke user.
 
 ---
 
 ## 5. Dokumentasi API
 
-Dokumentasi endpoint (Postman Collection) tersedia di file `postman_collection.json` pada root repository. Import file tersebut ke Postman untuk mencoba seluruh endpoint, termasuk contoh request body untuk `POST /ai/command`.
+Dokumentasi endpoint tersedia dalam bentuk Postman Collection, bisa diakses melalui:
+
+- **Link publik:** [Task Management API — Postman Collection](https://www.postman.com/tokopulaubarupinyuh-7631607/task-management-api/collection/22uxeg6/task-management-api)
+- **File JSON export:** `postman_collection.json` pada root repository (cadangan jika link di atas tidak dapat diakses)
+
+Import salah satu sumber di atas ke Postman untuk mencoba seluruh endpoint, termasuk contoh request body untuk `POST /ai/command`.
 
 ### Ringkasan Endpoint
 
