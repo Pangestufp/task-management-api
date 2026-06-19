@@ -1,0 +1,498 @@
+{
+  "info": {
+    "_postman_id": "cba50935-89c0-4951-a81c-5b1086d3b05e",
+    "name": "task-managemenr-api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "41652206",
+    "_collection_link": "https://go.postman.co/collection/41652206-cba50935-89c0-4951-a81c-5b1086d3b05e?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\" : \"user normal\", \r\n    \"email\" : \"usernormal@gmail.com\",\r\n    \"password\": \"usernormal\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseURL}}/api/auth/register",
+          "host": [
+            "{{BaseURL}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login as User",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\" : \"admin@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseURL}}/api/auth/login",
+          "host": [
+            "{{BaseURL}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login as Admin",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\" : \"admin@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseURL}}/api/auth/login",
+          "host": [
+            "{{BaseURL}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User - Get Own Data",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgxODU5MTM5LCJleHAiOjE3ODE5NDU1Mzl9.nWXaT78mu7ieTa-TKJmRzd96QVom5QOQxooWibcGRpI",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{BaseURL}}/api/auth/me",
+          "host": [
+            "{{BaseURL}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "me"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Project - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgxODQ5MjY4LCJleHAiOjE3ODE5MzU2Njh9.1rzO6SJ0mPSCN9uLD4ow8Nfdatfu93lWOiRxHDIqVgQ",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\" : \"project 6\",\r\n    \"description\" : \"description 6\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseURL}}/api/projects",
+          "host": [
+            "{{BaseURL}}"
+          ],
+          "path": [
+            "api",
+            "projects"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Project - Update",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgxODQ5MjY4LCJleHAiOjE3ODE5MzU2Njh9.1rzO6SJ0mPSCN9uLD4ow8Nfdatfu93lWOiRxHDIqVgQ",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\" : \"project 6 update\",\r\n    \"description\" : \"description 6 update\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseURL}}/api/projects/6",
+          "host": [
+            "{{BaseURL}}"
+          ],
+          "path": [
+            "api",
+            "projects",
+            "6"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Project - Get All",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgxODQ5MjY4LCJleHAiOjE3ODE5MzU2Njh9.1rzO6SJ0mPSCN9uLD4ow8Nfdatfu93lWOiRxHDIqVgQ",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseURL}}/api/projects",
+          "host": [
+            "{{BaseURL}}"
+          ],
+          "path": [
+            "api",
+            "projects"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Project - Get By ID",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywibmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgxODAyODU1LCJleHAiOjE3ODE4ODkyNTV9.6uPEGjCoqodnv0ktTHMe1R-dbQbEmarnGQ-Ihk21me4",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseURL}}/api/projects/5",
+          "host": [
+            "{{BaseURL}}"
+          ],
+          "path": [
+            "api",
+            "projects",
+            "5"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Project - Delete",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywibmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgxODAyODU1LCJleHAiOjE3ODE4ODkyNTV9.6uPEGjCoqodnv0ktTHMe1R-dbQbEmarnGQ-Ihk21me4",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseURL}}/api/projects/6",
+          "host": [
+            "{{BaseURL}}"
+          ],
+          "path": [
+            "api",
+            "projects",
+            "6"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Project - Get task By project",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywibmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgxODAyODU1LCJleHAiOjE3ODE4ODkyNTV9.6uPEGjCoqodnv0ktTHMe1R-dbQbEmarnGQ-Ihk21me4",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseURL}}/api/projects/4/tasks",
+          "host": [
+            "{{BaseURL}}"
+          ],
+          "path": [
+            "api",
+            "projects",
+            "4",
+            "tasks"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "AI - Prompt test case 1",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgxODQ5MjY4LCJleHAiOjE3ODE5MzU2Njh9.1rzO6SJ0mPSCN9uLD4ow8Nfdatfu93lWOiRxHDIqVgQ",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"prompt\" : \"kasih tugas migrasi db pada project id 4 ke user id 1 low dengan judul migrasi db dan deskripsi segera dikerjakan\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseURL}}/api/ai/command",
+          "host": [
+            "{{BaseURL}}"
+          ],
+          "path": [
+            "api",
+            "ai",
+            "command"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "AI - Prompt test case 2",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgxODQ5MjY4LCJleHAiOjE3ODE5MzU2Njh9.1rzO6SJ0mPSCN9uLD4ow8Nfdatfu93lWOiRxHDIqVgQ",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"prompt\" : \"Update task ID 25 jadi selesai.\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseURL}}/api/ai/command",
+          "host": [
+            "{{BaseURL}}"
+          ],
+          "path": [
+            "api",
+            "ai",
+            "command"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "AI - Prompt test case 3",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgxODQ5MjY4LCJleHAiOjE3ODE5MzU2Njh9.1rzO6SJ0mPSCN9uLD4ow8Nfdatfu93lWOiRxHDIqVgQ",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"prompt\" : \"Buatkan tugas buat dokumentasi laporan ci/cd pada project 4 ke user 2 dengan judul laporan dokuemntasi dan deskripsi segera dikerjakan, kemudian selesai task 24\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseURL}}/api/ai/command",
+          "host": [
+            "{{BaseURL}}"
+          ],
+          "path": [
+            "api",
+            "ai",
+            "command"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "AI - Prompt test case 4",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgxODQ5MjY4LCJleHAiOjE3ODE5MzU2Njh9.1rzO6SJ0mPSCN9uLD4ow8Nfdatfu93lWOiRxHDIqVgQ",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"prompt\" : \"Buatkan task print dokumentasi laporan ci/cd pada project 4 ke user 2 dengan judul print laporan dokuemntasi dan deskripsi segera dikerjakan, kemudian ubah task 25 menjadi sedang dikerjakan, dan buat task makan makan pada project 6 ke user 2 dengan judul makan makan dengan deskripsi rencana makan-makan akhir tahun\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseURL}}/api/ai/command",
+          "host": [
+            "{{BaseURL}}"
+          ],
+          "path": [
+            "api",
+            "ai",
+            "command"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "BaseURL",
+      "value": ""
+    }
+  ]
+}
