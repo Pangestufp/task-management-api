@@ -215,16 +215,16 @@ Import salah satu sumber di atas ke Postman untuk mencoba seluruh endpoint, term
 
 | Method | Endpoint | Role | Keterangan |
 |---|---|---|---|
-| POST | `/api/v1/auth/register` | Public | Registrasi user (admin/user) |
-| POST | `/api/v1/auth/login` | Public | Login, mendapatkan JWT |
-| GET | `/api/v1/auth/me` | Authenticated | Data user yang sedang login |
-| POST | `/api/v1/projects` | Admin | Membuat project |
-| GET | `/api/v1/projects` | Authenticated | Daftar semua project |
-| GET | `/api/v1/projects/:id` | Authenticated | Detail project |
-| PUT | `/api/v1/projects/:id` | Admin | Update project |
-| DELETE | `/api/v1/projects/:id` | Admin | Hapus project |
-| GET | `/api/v1/projects/:id/tasks` | Authenticated | Daftar task dalam project |
-| POST | `/api/v1/ai/command` | Authenticated | Eksekusi instruksi natural language ke operasi Task |
+| POST | `/api/auth/register` | Public | Registrasi user (admin/user) |
+| POST | `/api/auth/login` | Public | Login, mendapatkan JWT |
+| GET | `/api/auth/me` | Authenticated | Data user yang sedang login |
+| POST | `/api/projects` | Admin | Membuat project |
+| GET | `/api/projects` | Authenticated | Daftar semua project |
+| GET | `/api/projects/:id` | Authenticated | Detail project |
+| PUT | `/api/projects/:id` | Admin | Update project |
+| DELETE | `/api/projects/:id` | Admin | Hapus project |
+| GET | `/api/projects/:id/tasks` | Authenticated | Daftar task dalam project |
+| POST | `/api/ai/command` | Authenticated | Eksekusi instruksi natural language ke operasi Task |
 
 ---
 
@@ -234,7 +234,5 @@ Setelah menjalankan `node src/seed.js`, gunakan akun berikut untuk login dan tes
 
 | Email | Password | Role |
 |---|---|---|
-| `admin@example.com` | `password123` | admin |
-| `user@example.com` | `password123` | user |
-
-> Sesuaikan dengan isi `seed.js` yang sebenarnya jika kredensial dummy berbeda.
+| `admin@gmail.com` | `123456` | admin |
+| `user@gmail.com` | `123456` | user |
