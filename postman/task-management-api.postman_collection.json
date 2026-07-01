@@ -1,10 +1,10 @@
 {
   "info": {
-    "_postman_id": "cba50935-89c0-4951-a81c-5b1086d3b05e",
-    "name": "task-managemenr-api",
+    "_postman_id": "d20c2d1f-f749-420e-a1d2-78a13709be40",
+    "name": "task-management-api",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "41652206",
-    "_collection_link": "https://go.postman.co/collection/41652206-cba50935-89c0-4951-a81c-5b1086d3b05e?source=collection_link"
+    "_exporter_id": "55811656",
+    "_collection_link": "https://go.postman.co/collection/55811656-d20c2d1f-f749-420e-a1d2-78a13709be40?source=collection_link"
   },
   "item": [
     {
@@ -98,7 +98,7 @@
         "header": [
           {
             "key": "Authorization",
-            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgxODU5MTM5LCJleHAiOjE3ODE5NDU1Mzl9.nWXaT78mu7ieTa-TKJmRzd96QVom5QOQxooWibcGRpI",
+            "value": "{{bearer_token_1ag1}}",
             "type": "text"
           }
         ],
@@ -123,7 +123,7 @@
         "header": [
           {
             "key": "Authorization",
-            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgxODQ5MjY4LCJleHAiOjE3ODE5MzU2Njh9.1rzO6SJ0mPSCN9uLD4ow8Nfdatfu93lWOiRxHDIqVgQ",
+            "value": "{{bearer_token_0kpa}}",
             "type": "text"
           }
         ],
@@ -156,7 +156,7 @@
         "header": [
           {
             "key": "Authorization",
-            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgxODQ5MjY4LCJleHAiOjE3ODE5MzU2Njh9.1rzO6SJ0mPSCN9uLD4ow8Nfdatfu93lWOiRxHDIqVgQ",
+            "value": "{{bearer_token_0kpa}}",
             "type": "text"
           }
         ],
@@ -193,7 +193,7 @@
         "header": [
           {
             "key": "Authorization",
-            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgxODQ5MjY4LCJleHAiOjE3ODE5MzU2Njh9.1rzO6SJ0mPSCN9uLD4ow8Nfdatfu93lWOiRxHDIqVgQ",
+            "value": "{{bearer_token_0kpa}}",
             "type": "text"
           }
         ],
@@ -229,7 +229,7 @@
         "header": [
           {
             "key": "Authorization",
-            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywibmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgxODAyODU1LCJleHAiOjE3ODE4ODkyNTV9.6uPEGjCoqodnv0ktTHMe1R-dbQbEmarnGQ-Ihk21me4",
+            "value": "{{bearer_token_0yzj}}",
             "type": "text"
           }
         ],
@@ -263,7 +263,7 @@
         "header": [
           {
             "key": "Authorization",
-            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywibmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgxODAyODU1LCJleHAiOjE3ODE4ODkyNTV9.6uPEGjCoqodnv0ktTHMe1R-dbQbEmarnGQ-Ihk21me4",
+            "value": "{{bearer_token_0yzj}}",
             "type": "text"
           }
         ],
@@ -300,7 +300,7 @@
         "header": [
           {
             "key": "Authorization",
-            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywibmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgxODAyODU1LCJleHAiOjE3ODE4ODkyNTV9.6uPEGjCoqodnv0ktTHMe1R-dbQbEmarnGQ-Ihk21me4",
+            "value": "{{bearer_token_0yzj}}",
             "type": "text"
           }
         ],
@@ -335,7 +335,7 @@
         "header": [
           {
             "key": "Authorization",
-            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgxODQ5MjY4LCJleHAiOjE3ODE5MzU2Njh9.1rzO6SJ0mPSCN9uLD4ow8Nfdatfu93lWOiRxHDIqVgQ",
+            "value": "{{bearer_token_0kpa}}",
             "type": "text"
           }
         ],
@@ -369,7 +369,7 @@
         "header": [
           {
             "key": "Authorization",
-            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgxODQ5MjY4LCJleHAiOjE3ODE5MzU2Njh9.1rzO6SJ0mPSCN9uLD4ow8Nfdatfu93lWOiRxHDIqVgQ",
+            "value": "{{bearer_token_0kpa}}",
             "type": "text"
           }
         ],
@@ -403,7 +403,7 @@
         "header": [
           {
             "key": "Authorization",
-            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgxODQ5MjY4LCJleHAiOjE3ODE5MzU2Njh9.1rzO6SJ0mPSCN9uLD4ow8Nfdatfu93lWOiRxHDIqVgQ",
+            "value": "{{bearer_token_0kpa}}",
             "type": "text"
           }
         ],
@@ -437,13 +437,81 @@
         "header": [
           {
             "key": "Authorization",
-            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgxODQ5MjY4LCJleHAiOjE3ODE5MzU2Njh9.1rzO6SJ0mPSCN9uLD4ow8Nfdatfu93lWOiRxHDIqVgQ",
+            "value": "{{bearer_token_0kpa}}",
             "type": "text"
           }
         ],
         "body": {
           "mode": "raw",
           "raw": "{\r\n    \"prompt\" : \"Buatkan task print dokumentasi laporan ci/cd pada project 4 ke user 2 dengan judul print laporan dokuemntasi dan deskripsi segera dikerjakan, kemudian ubah task 25 menjadi sedang dikerjakan, dan buat task makan makan pada project 6 ke user 2 dengan judul makan makan dengan deskripsi rencana makan-makan akhir tahun\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseURL}}/api/ai/command",
+          "host": [
+            "{{BaseURL}}"
+          ],
+          "path": [
+            "api",
+            "ai",
+            "command"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "AI - Prompt test case 5",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{bearer_token_0kpa}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"prompt\" : \"Tampilkan semua projects yang sedang high?\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseURL}}/api/ai/command",
+          "host": [
+            "{{BaseURL}}"
+          ],
+          "path": [
+            "api",
+            "ai",
+            "command"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "AI - Prompt test case 6",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{bearer_token_0kpa}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"prompt\" : \"Apa saja project yang sedang dikerjakan user 2\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -491,8 +559,28 @@
   ],
   "variable": [
     {
-      "key": "BaseURL",
-      "value": ""
+      "key": "bearer_token_0kpa",
+      "secret": true
+    },
+    {
+      "key": "bearer_token_0yzj",
+      "secret": true
+    },
+    {
+      "key": "bearer_token_1ag1",
+      "secret": true
+    },
+    {
+      "key": "supabase_service_role_api_key_0adt",
+      "secret": true
+    },
+    {
+      "key": "supabase_service_role_api_key_0jg0",
+      "secret": true
+    },
+    {
+      "key": "supabase_service_role_api_key_0wrj",
+      "secret": true
     }
   ]
 }
