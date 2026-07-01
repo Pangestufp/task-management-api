@@ -1,6 +1,7 @@
 import { NotFoundError } from '../../exception/app_error.js'
 import Task from '../../models/task.js'
 import Project from "../../models/project.js"
+import sequelize from '../../config/database.js'
 
 export default class AiRepository {
 
@@ -50,4 +51,25 @@ export default class AiRepository {
 
     return results
   }
+
+    async executeSelectOperations(operations) {
+        const op = operations[0]
+            if (op.where?.id) {
+                return Project.findAll({
+                    distinct: true,
+                    include: [{
+                        model: Task,
+                        as: 'tasks',
+                        where: { assignee_id: op.where.id },
+                        attributes: []
+                    }]
+                });
+            } else {
+                return sequelize.query(
+                    "select distinct p.* from projects p join tasks t on p.id = t.project_id where t.status = 'in_progress' and t.priority = 'high'",
+                    { type: sequelize.QueryTypes.SELECT }
+                )
+            }
+        
+    }
 }

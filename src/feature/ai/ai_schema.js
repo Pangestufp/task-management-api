@@ -5,7 +5,7 @@ export const AI_RESPONSE_SCHEMA = {
         properties: {
             operation: {
                 type: 'STRING',
-                enum: ['CREATE', 'UPDATE', 'DELETE', 'REJECTED']
+                enum: ['CREATE', 'UPDATE', 'DELETE', 'REJECTED','SELECT']
             },
             table: {
                 type: 'STRING'

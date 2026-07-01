@@ -1,7 +1,7 @@
 import { BadRequestError } from '../exception/app_error.js'
 
-const ALLOWED_OPERATIONS = ['CREATE', 'UPDATE', 'DELETE', 'REJECTED']
-const ALLOWED_TABLES = ['tasks']
+const ALLOWED_OPERATIONS = ['CREATE', 'UPDATE', 'DELETE', 'REJECTED', 'SELECT']
+const ALLOWED_TABLES = ['tasks', 'projects']
 const ALLOWED_STATUS = ['todo', 'in_progress', 'done']
 const ALLOWED_PRIORITY = ['low', 'medium', 'high']
 
@@ -29,9 +29,30 @@ export const validateAIResponse = (parsed) => {
             throw new BadRequestError(`Operation on table "${op.table}" is not allowed`)
         }
 
+        const operationTypes = new Set(parsed.map(op => op.operation))
+        
+        if (operationTypes.has('SELECT') && operationTypes.size > 1) {
+            throw new BadRequestError('Cannot mix SELECT with other operations in one response')
+        }
+        
+        if (op.table=='projects') {
+            if (op.operation !== 'SELECT') {
+                throw new BadRequestError(op.reason ?? 'Request rejected by AI')
+            }
+        }
+
         if (op.operation === 'CREATE') {
             validateCreateData(op.data)
         }
+
+        if (op.operation === 'SELECT') {
+            if (op.table!='projects') {
+                if (op.operation !== 'SELECT') {
+                    throw new BadRequestError(op.reason ?? 'Request rejected by AI')
+                }
+            }
+        }
+
 
         if (op.operation === 'UPDATE') {
             if (typeof op.where?.id !== 'number') {
@@ -45,6 +66,8 @@ export const validateAIResponse = (parsed) => {
                 throw new BadRequestError('DELETE must have where.id')
             }
         }
+
+
     }
 
     return true

@@ -35,6 +35,12 @@ export default class AiService {
             // 3. Validasi
             validateAIResponse(parsed)
 
+            const isSelect = parsed.every(op => op.operation === 'SELECT')
+
+            if (isSelect) {
+                return await this.aiRepo.executeSelectOperations(parsed)
+            }
+
             // 4. Eksekusi SEMUA operation dalam SATU transaction
             results = await sequelize.transaction(async (transaction) => {
                 return this.aiRepo.executeOperations(parsed, transaction)
